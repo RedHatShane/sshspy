@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
 # Update apt and install dependencies
-sudo apt-get update 
-sudo apt-get install ca-certificates curl
+sudo apt-get update --yes && echo "Ran updates" >> /tmp/bootscript.log
+sudo apt-get install ca-certificates curl --yes && echo "Installed curl and ca-certs" >> /tmp/bootscript.log
 
 # Install Docker repository
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+sudo install -m 0755 -d /etc/apt/keyrings && echo "Created /etc/apt/keyrings " >> /tmp/bootscript.log
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && echo "Downloaded Docker key" >> /tmp/bootscript.log
+sudo chmod a+r /etc/apt/keyrings/docker.asc && echo "Set read permission on Docker key" >> /tmp/bootscript.log
 echo \
 "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
 $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && echo "Added repository" >> /tmp/bootscript.log
 
 # Install Docker applications
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-echo 'Script executed successfully!' >> /run/testing.txt
+sudo apt-get update --yes && echo "Ran updates" >> /tmp/bootscript.log
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  --yes \
+  && echo "Installed Docker stuff" >> /tmp/bootscript.log
 
 # Basic UFW rules with some random ports
 ufw enable
