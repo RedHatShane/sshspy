@@ -28,3 +28,6 @@ ufw allow from any to any port 2244 proto tcp
 ufw allow from any to any port 80 proto tcp
 ufw allow from any to any port 443 proto tcp
 ufw allow from any to any port 5000 proto tcp
+
+# Create directories 
+mkdir -p /app/sensornet/{aggregator,sensor}
