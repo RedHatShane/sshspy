@@ -1,0 +1,2 @@
+docker run --rm -it -p 22:2222 --entrypoint bash sensor
+docker run --rm -it -p 5000:5000 --entrypoint bash sensor
