@@ -22,12 +22,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ufw enable
 ufw allow from 68.0.0.0/8 to any 
 ufw allow from 172.17.0.0/16 to any
+ufw allow from 10.124.0.0/20 to any port 5000 proto tcp
 ufw allow from any to any port 22 proto tcp
 ufw allow from any to any port 2222 proto tcp
 ufw allow from any to any port 2244 proto tcp
 ufw allow from any to any port 80 proto tcp
 ufw allow from any to any port 443 proto tcp
-ufw allow from any to any port 5000 proto tcp
+
 
 # Create directories 
 mkdir -p /app/sensornet/{aggregator,sensor}
